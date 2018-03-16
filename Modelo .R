@@ -1,47 +1,8 @@
 setwd("/Users/aleschwartzman/Documents/Big Data/Modelo BRL") #estabelecendo o diretório de trab
-source('Inicialize.R')
+source('Initialize.R')
 #source('BBG download.R)
 source('Charts.R')
-
-
-# PREPARANDO AS BASES DOS MODELOS -----------------------------------------
-brl<-series$brl[,1]
-r_brl_1 <- round(return(brl,1)*100,2)
-r_brl_5 <- round(return(brl,5)*100,2)
-mov_brl_1 <- as.factor(ifelse(r_brl_1 < -0.50,'DOWN',
-                  ifelse(r_brl_1 > 0.50, 'UP','FLAT')))
-mov_brl_5 <- as.factor(ifelse(r_brl_5 < -0.75,'DOWN',
-                              ifelse(r_brl_5 > 0.75, 'UP','FLAT')))
-
-df_y <- merge(brl,r_brl_1) %>%
-        merge(r_brl_5) %>%
-        data.frame() %>%
-        cbind(mov_brl_1, mov_brl_5)
-
-colnames(df_y) <- c('brl','return1','return5','move','move5')
-
-summary(df_y)
-head(df_y)
-tail(df_y)
-
-xts_x <- xts(NULL, order.by = index(series[[1]]))
-for (i in 1:length(series)){
-  
-  serie <- series[[i]]
-  name_serie <- toupper(names(series[i]))
-  
-  xts <- serie[,5:7]
-  colnames(xts) <- paste(colnames(xts),name_serie)
-  
-  xts_x <- merge(xts_x,xts)
-  rm(serie,name_serie,xts)
-}
-
-summary(xts_x)
-head(xts_x)
-tail(xts_x)
-
-df_x <- data.frame(xts_x)
+source('Data Structure.R')
 
 # ANALISE EXPLORATORIA ----------------------------------------------------
 

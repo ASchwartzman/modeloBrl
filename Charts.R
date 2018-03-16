@@ -22,4 +22,4 @@ for (i in length(series):1){
   rm(serie,series_name,n,matriz.na)
 }
 
-rm(list = c('i','years'))
+rm(i,years)

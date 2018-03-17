@@ -21,15 +21,15 @@ print(paste('Threshold 5d move:', threshold_m5))
 print(round(table(m_5)/nrow(m_5),2))
 
 
-#### EMPAQUEI AQUIIIII !!!!
 xts_r <- merge(r_1,r_5) ; colnames(xts_r) <- c('r1','r5')
-xts_r$lead_r1 <- lag(xts_r$r1, k = -1)
-head(xts_r)
-xts_r$lead_r5 <- lag(xts_r$r5,k = -5)
-head(xts_r,8)
+xts_r$lead_r1 <- Lag(xts_r$r1, shift = -1)
+xts_r$lead_r5 <- Lag(xts_r$r5, shift = -5)
+
              
-xts_m <- merge(m_1,m_5) ; xts_r$lead_m1 <- lead(m_1,1) ; xts_r$lead_m5 <- lead(m_5,5)
-colnames(xts_m) <- c('m1','m5','lead_m1','lead_m5')
+xts_m <- merge(m_1,m_5) ; colnames(xts_m) <- c('m1','m5')
+xts_m$lead_m1 <- Lag(xts_m$m1, shift = -1)
+xts_m$lead_m5 <- Lag(xts_m$m5, shift = -5)
+
 
 ## Creating X xts base (ST20 / ST60 / ST120) for all variables 
 xts_x <- xts(NULL, order.by = index(series[[1]]))
@@ -45,7 +45,7 @@ for (i in 1:length(series)){
   rm(serie,name_serie,xts)
 }
 
-
+base <- merge(zoo(xts_m[3:4,]), zoo(xts_x))
 
 rm(i,threshold_m1,threshold_m5,
    m_1,m_5,r_1,r_5)

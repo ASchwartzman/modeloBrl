@@ -2,7 +2,7 @@ rm(list=ls());cat("\014") #limpando variaveis e graficos
 graphics.off() #limpando graficos
 
 ## baixando os pacotes
-pacotes <- c('dplyr','ggplot2','xts','TTR', 'randomForest','keras')
+pacotes <- c('dplyr','ggplot2','xts','Hmisc','TTR', 'randomForest','keras')
 lapply(pacotes, require, character.only = TRUE)
 
 ## baixando objetos

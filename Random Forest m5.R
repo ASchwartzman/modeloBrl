@@ -25,7 +25,7 @@ for (v in variaveis){
 }
 
 ## definindo a janela de teste 't'
-t <- 180 #dias
+t <- 250 #dias
 X_train <- X[1:(nrow(X)-t),]
 X_test <- X[(nrow(X)-t+1):nrow(X),]
 
@@ -51,8 +51,12 @@ print(confusion.table)
 print(test_error)
 varImpPlot(rf.m5)
 
+<<<<<<< HEAD
 X_test <- rbind(X_test,X.pure[which(Y.pure == ""),]) 
 #X_test <- na.omit(X.pure)
+=======
+X_test <- rbind(X_test,X.pure[which(Y.pure == ""),])
+>>>>>>> 6888b4af2e53ca6ec666db3c3905b607b8f5908e
 rf.m5.pred <- predict(rf.m5,newdata = X_test)
 
 #P&L modelo
@@ -73,20 +77,36 @@ title('P&L Acc. - Test Period',cex.main = 1.25)
 plot(as.zoo(backtest$brl),
      xlab = '',
      ylab = '')
+<<<<<<< HEAD
 par(new=TRUE)
 plot(as.zoo(backtest$pnl_accumulated),
      col=2,
      bty='n',
      xaxt="n",
      yaxt="n",
+=======
+par(new=TRUE)               
+plot(as.zoo(backtest$pnl_accumulated),
+     col=2,
+     bty='n',               
+     xaxt="n",               
+     yaxt="n",              
+>>>>>>> 6888b4af2e53ca6ec666db3c3905b607b8f5908e
      xlab="", ylab="")
 
 axis(4, las=1)
 
+<<<<<<< HEAD
 legend("topleft",
        legend=c("BRL (L)","P&L(R)"),
        col=1:2,
        lty=1,
+=======
+legend("topleft",           
+       legend=c("BRL (L)","P&L(R)"), 
+       col=1:2,
+       lty=1,              
+>>>>>>> 6888b4af2e53ca6ec666db3c3905b607b8f5908e
        cex=0.65)
 
 

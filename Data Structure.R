@@ -45,7 +45,6 @@ for (i in 1:length(series)){
   rm(serie,name_serie,xts)
 }
 
-### É ESSE o CAMINHO
 xts_x <- xts_x[index(xts_m)]
 
 rm(i,threshold_m1,threshold_m5,

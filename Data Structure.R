@@ -45,7 +45,8 @@ for (i in 1:length(series)){
   rm(serie,name_serie,xts)
 }
 
-base <- merge(zoo(xts_m[3:4,]), zoo(xts_x))
+### É ESSE o CAMINHO
+xts_x <- xts_x[index(xts_m)]
 
 rm(i,threshold_m1,threshold_m5,
    m_1,m_5,r_1,r_5)
